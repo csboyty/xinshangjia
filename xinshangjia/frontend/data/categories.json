@@ -1,0 +1,19 @@
+{
+    "sEcho":1,
+    "success":true,
+    "iTotalRecords":20,
+    "iTotalDisplayRecords":20,
+    "aaData": [{
+        "id":1,
+        "items":[
+            {"name":"金属","primary":true,"lang":"zh"},
+            {"name":"gold","lang":"en"}
+        ]
+    },{
+        "id":1,
+        "items":[
+            {"name":"木","primary":true,"lang":"zh"},
+            {"name":"ff","lang":"en"}
+        ]
+    }]
+}

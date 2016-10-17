@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'admin/head.html' %}
+    <link href="static/css/admin/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/lib/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/src/main.css" type="text/css" rel="stylesheet">
+    <script src="static/js/admin/lib/jquery-2.0.3.min.js"></script>
+    <script src="static/js/admin/lib/jquery.serialize-object.min.js"></script>
+    <script src="static/js/admin/lib/bootstrap.min.js"></script>
+    <script src="static/js/admin/lib/juicer-min.js"></script>
+    <script type="text/javascript" src="static/js/admin/lib/jquery.toastmessage.js"></script>
+    <script type="text/javascript" src="static/js/admin/lib/jquery.dataTables.min.js"></script>
+    <script src="static/js/admin/src/config.js"></script>
+    <script src="static/js/admin/src/Functions.js"></script>
+    <script src="static/js/admin/src/auditWorks.js"></script>
+</head>
+<body>
+
+{% include 'admin/header.html' %}
+
+<script type="text/template" id="worksTpl">
+    <div class="row">
+        <p class="col-md-4">
+            <label class="control-label">作品名:</label>
+            <span>${title}</span>
+        </p>
+        <p class="col-md-8">
+            <label class="control-label">缩略图:</label>
+            <img src="${thumbUrl}" style="vertical-align: top">
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-md-12">
+            <label class="control-label">设计说明:</label>
+            <span>${description}</span>
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-md-12">
+            {@each assets as a}
+                <img src="${a.path}" style="max-width: 100%;margin: 5px 0px">
+            {@/each}
+        </p>
+    </div>
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+
+        {% include 'admin/menu.html' %}
+
+        <div class="col-md-10 opt-container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">审核设计师</h1>
+                </div>
+                <div class="panel-body" id="opt-body">
+                    <div class="tableSearchContainer col-md-6">
+                        <input type="text" id="searchContent" class="form-control" placeholder="作品名">
+                        <select class="form-control" id="searchStatus">
+                            <option value="0">待审核</option>
+                            <option value="2">审核失败</option>
+                        </select>
+                        <button id="searchBtn" class="btn btn-default" type="button">搜索</button>
+                    </div>
+                    <table id="myTable" class="dataTable">
+                        <thead>
+                        <tr>
+                            <th>作品名</th>
+                            <th>申请日期</th>
+                            <th>状态</th>
+                            <th>备注</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--<tr>
+                            <td>cs@163.com</td>
+                            <td>2014-04-04</td>
+                            <td>未审核</td>
+                            <td></td>
+                            <td><a href="#" class="audit">审核</a></td>
+                        </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--审核设计师-->
+<div class="modal fade" id="auditDesignerModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">审核设计师</h4>
+            </div>
+            <div class="modal-body">
+                <div id="worksDetail">
+                    <!--<div class="row">
+                        <p class="col-md-4">
+                            <label class="control-label">作品名:</label>
+                            <span id="email">cs@163.com</span>
+                        </p>
+                        <p class="col-md-8">
+                            <label class="control-label">缩略图:</label>
+                            <img id="imageUrl" src="data/200x200/2.png" style="vertical-align: top">
+                        </p>
+                    </div>
+                    <div class="row">
+                        <p class="col-md-12">
+                            <label class="control-label">设计说明:</label>
+                        <span id="tel">设计说明设计说明设计说明设计说明设计说明设计说明设计说明设计说明设计说明设计说明
+                        设计说明设计说明设计说明设计说明设计说明设计说明设计说明设计说明设计说明设计说明设计说明设计说明
+                        设计说明设计说明设计说明设计说明设计说明设计说明设计说明设计说明设计说明设计说明</span>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <p class="col-md-12">
+                            <img src="data/1600x450/2.jpg" style="max-width: 100%;margin: 5px 0px">
+                            <img src="data/1600x450/3.jpg" style="max-width: 100%;margin: 5px 0px">
+                            <img src="data/1600x450/4.jpg" style="max-width: 100%;margin: 5px 0px">
+                        </p>
+                    </div>-->
+                </div>
+                <hr>
+                <form class="form-horizontal" id="myForm">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">审核状态*</label>
+                        <div class="col-md-8">
+                            <select name="level" class="form-control" id="auditStatus">
+                                <option value="1">审核通过</option>
+                                <option value="2">审核失败</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group hidden" id="memoRow">
+                        <label class="control-label col-md-2">原因*</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="memo" id="memo">
+                            <label class="error hidden" for="memo">请输入失败原因，如果国籍非中国，请用英文。</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <button type="submit" id="formSubmit" class="btn btn-success form-control">确定</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% include 'admin/loading.html' %}
+
+</body>
+</html>

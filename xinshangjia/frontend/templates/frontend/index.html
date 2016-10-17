@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "frontend/head.html" %}
+    <title>{{_("BetterLife")}}</title>
+    <link href="static/css/frontend/src/main.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <link href="static/css/frontend/src/ie.css" rel="stylesheet" type="text/css">
+    <![endif]-->
+</head>
+<body>
+
+{% include "frontend/header.html" %}
+
+<div class="main">
+    <div class="rollContainer">
+        <ul class="rollList" id="rollList">
+            {% for b in banners %}
+            {% if loop.index==1 %}
+            <li style="z-index: 3;opacity: 1">
+                <a href="{{b.link_url}}" target="_blank">
+                    <img class="thumb" src="{{b.image_url}}">
+                </a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{{b.link_url}}"  target="_blank">
+                    <img class="thumb" src="{{b.image_url}}">
+                </a>
+            </li>
+            {% endif %}
+            {% endfor %}
+
+        </ul>
+        <!--<ul class="numberList" id="numberList">
+            <li><a href="#" class="active">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+        </ul>-->
+        <table class="numberBar" id="numberList" border="0px">
+            <tr>
+                {% for b in banners %}
+                {% if loop.index==1 %}
+                <td><a href="#" class="active">{{loop.index}}</a></td>
+                {% else %}
+                <td><a href="#">{{loop.index}}</a></td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+    <ul class="introduceIcon">
+        <li style="width: 13%">
+            <img class="icon" src="static/images/frontend/app/1920-1.png">
+        </li>
+        <li style="width:4.4%"></li>
+        <li style="width: 13%">
+            <img class="icon" src="static/images/frontend/app/1920-2.png">
+        </li>
+        <li style="width:4.4%"></li>
+        <li style="width: 13%">
+            <img class="icon" src="static/images/frontend/app/1920-3.png">
+        </li>
+        <li style="width:4.4%"></li>
+        <li style="width: 13%">
+            <img class="icon" src="static/images/frontend/app/1920-4.png">
+        </li>
+        <li style="width:4.4%"></li>
+        <li style="width: 13%">
+            <img class="icon" src="static/images/frontend/app/1920-5.png">
+        </li>
+        <li style="width:4.4%"></li>
+        <li style="width: 13%">
+            <img class="icon" src="static/images/frontend/app/1920-6.png">
+        </li>
+    </ul>
+    <ul class="introduce">
+        <li style="width: 13%">
+            <div class="info">
+                <h4 class="title">{{_("Designers")}}</h4>
+                <p class="description">{{_("Enter the designer")}}</p>
+            </div>
+        </li>
+        <li style="width:4.4%"><span class="line"></span></li>
+        <li style="width: 13%">
+            <div class="info">
+                <h4 class="title">{{_("Works")}}</h4>
+                <p class="description">{{_("Designer works according to specifications submitted work")}}</p>
+            </div>
+        </li>
+        <li style="width:4.4%"><span class="line"></span></li>
+        <li style="width: 13%">
+            <div class="info">
+                <h4 class="title">{{_("Audit")}}</h4>
+                <p class="description">{{_("Audit work in platform")}}</p>
+            </div>
+        </li>
+        <li style="width:4.4%"><span class="line"></span></li>
+        <li style="width: 13%">
+            <div class="info">
+                <h4 class="title">{{_("Show")}}</h4>
+                <p class="description">{{_("Show approval work")}}</p>
+            </div>
+        </li>
+        <li style="width:4.4%"><span class="line"></span></li>
+        <li style="width: 13%">
+            <div class="info">
+                <h4 class="title">{{_("Produce")}}</h4>
+                <p class="description">{{_("Platform organize craftsmen")}}</p>
+            </div>
+        </li>
+        <li style="width:4.4%"><span class="line"></span></li>
+        <li style="width: 13%">
+            <div class="info">
+                <h4 class="title">{{_("Sale")}}</h4>
+                <p class="description">{{_("In platform for sales of the products after the production")}}</p>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="highList hasTBBorder" id="workList">
+        {% for w in artifacts %}
+        {% if loop.index<=10 %}
+        <li>
+            <a class="workInfo" href="artifact/detail/{{w.id}}">
+                <img class="thumb" src="{{w.preview_image}}">
+                <h3 class="title ellipsis">{{w.name}}</h3>
+            </a>
+            <a class="designerInfo"  href="designer/detail/{{w.account_id}}">
+                <img class="designerImage" src="{{w.account.image_url}}">
+                <p class="designerName">{{w.account.first_name}} {{w.account.last_name}}</p>
+            </a>
+        </li>
+        {% else %}
+        <li class="hidden">
+            <a class="workInfo" href="artifact/detail/{{w.id}}">
+                <img class="thumb" src="{{w.preview_image}}">
+                <h3 class="title ellipsis">{{w.name}}</h3>
+            </a>
+            <a class="designerInfo"  href="designer/detail/{{w.account_id}}">
+                <img class="designerImage" src="{{w.account.image_url}}">
+                <p class="designerName">{{w.account.name}}</p>
+            </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+{% include "frontend/footer.html" %}
+<script src="static/js/frontend/lib/jquery-1.11.1.min.js"></script>
+<script src="static/js/frontend/src/config.js"></script>
+<script src="static/js/frontend/src/Functions.js"></script>
+<script src="static/js/frontend/src/roll.js"></script>
+<script src="static/js/frontend/src/index.js"></script>
+<script>
+    var pageName="index";
+</script>
+
+</body>
+</html>

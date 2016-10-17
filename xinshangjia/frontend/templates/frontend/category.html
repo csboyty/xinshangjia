@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "frontend/head.html" %}
+    <title>{{material}} | {{_("BetterLife")}}</title>
+    <link href="static/css/frontend/src/main.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <link href="static/css/frontend/src/ie.css" rel="stylesheet" type="text/css">
+    <![endif]-->
+
+</head>
+<body>
+
+{% include "frontend/header.html" %}
+
+<div class="main">
+    <div class="pageHeaderInfo">
+        <h1 class="title">{{material}}</h1>
+        {% set materialObj = material_by_name(material) %}
+        {% if materialObj.description %}
+        <p class="description">{{materialObj.description}}</p>
+        {% else %}
+        <p class="description">{{_("Category has no description")}}</p>
+        {% endif %}
+    </div>
+    <ul class="highList hasTopBorder" id="workList">
+        {% for w in artifacts %}
+        {% if loop.index<=10 %}
+        <li>
+            <a class="workInfo" href="artifact/detail/{{w.id}}">
+                <img class="thumb" src="{{w.preview_image}}">
+                <h3 class="title ellipsis">{{w.name}}</h3>
+            </a>
+            <a class="designerInfo"  href="designer/detail/{{w.account_id}}">
+                <img class="designerImage" src="{{w.account.image_url}}">
+                <p class="designerName">{{w.account.first_name}} {{w.account.last_name}}</p>
+            </a>
+        </li>
+        {% else %}
+        <li class="hidden">
+            <a class="workInfo" href="artifact/detail/{{w.id}}">
+                <img class="thumb" src="{{w.preview_image}}">
+                <h3 class="title ellipsis">{{w.name}}</h3>
+            </a>
+            <a class="designerInfo"  href="designer/detail/{{w.account_id}}">
+                <img class="designerImage" src="{{w.account.image_url}}">
+                <p class="designerName">{{w.account.name}}</p>
+            </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% include "frontend/pagination.html" %}
+</div>
+
+{% include "frontend/footer.html" %}
+<script src="static/js/frontend/lib/jquery-1.11.1.min.js"></script>
+<script src="static/js/frontend/lib/jquery.jqpagination.min.js"></script>
+<script src="static/js/frontend/src/config.js"></script>
+<script src="static/js/frontend/src/Functions.js"></script>
+<script src="static/js/frontend/src/category.js"></script>
+<script>
+    var pageName="category";
+    var categoryName="{{material}}";
+    var maxCount="{{count}}";
+    var currentPage="{{page}}";
+</script>
+
+</body>
+</html>

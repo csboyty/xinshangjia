@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "frontend/head.html" %}
+    <title>{{artifact.name}} | {{_("BetterLife")}}</title>
+    <link href="static/css/frontend/src/main.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <link href="static/css/frontend/src/ie.css" rel="stylesheet" type="text/css">
+    <![endif]-->
+
+</head>
+<body>
+
+{% include "frontend/header.html" %}
+
+<div class="main">
+    <div class="autoLeft  pdt50">
+        <div class="workDetail">
+            <h2 class="title">{{artifact.name}}</h2>
+            <p class="description">{{artifact.abstract}}</p>
+            {% for as in artifact.assets %}
+            <img src="{{as.media_file}}">
+            {% endfor %}
+
+            <!--<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+            <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+-->
+            <!-- JiaThis Button BEGIN -->
+            <div class="jiathis_style">
+                <a class="jiathis_button_qzone"></a>
+                <a class="jiathis_button_tsina"></a>
+                <a class="jiathis_button_tqq"></a>
+                <a class="jiathis_button_weixin"></a>
+                <a class="jiathis_button_renren"></a>
+            </div>
+            <script type="text/javascript">
+                var jiathis_config = {data_track_clickback:'true'};
+            </script>
+            <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2023495" charset="utf-8"></script>
+            <!-- JiaThis Button END -->
+        </div>
+        {% if artifact.reference %}
+        <a class="floatLink" href="#">{{_("Design Inspiration")}}</a>
+        {% endif %}
+    </div>
+    <div class="fixedRight">
+        <div class="designerInfoRight">
+            <a class="thumb" href="designer/detail/{{artifact.account.id}}">
+                <img src="{{artifact.account.image_url}}">
+            </a>
+            <a class="name" href="designer/detail/{{artifact.account.id}}">{{artifact.account.first_name}} {{artifact.account.last_name}}</a>
+            <p class="address">{{artifact.account.country_name}}</p>
+            <!--<p class="workCount">{{_("Works")}}：{{artifact_count}}</p>-->
+            {% if artifact.account.description %}
+            <p class="description">{{artifact.account.description}}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% include "frontend/footer.html" %}
+<script>
+    var pageName="workDetail";
+</script>
+
+</body>
+</html>

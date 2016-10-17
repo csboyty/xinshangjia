@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'admin/head.html' %}
+    <link href="static/css/admin/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="static/css/admin/lib/jquery.toastmessage.css">
+    <link href="static/css/admin/src/zyup.css" type="text/css" rel="stylesheet">
+    <link href="static/css/admin/src/main.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="static/js/admin/lib/jquery-2.0.3.min.js"></script>
+    <script src="static/js/admin/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/js/admin/lib/juicer-min.js"></script>
+    <script src="static/js/admin/lib/jquery.serialize-object.min.js"></script>
+    <script type="text/javascript" src="static/js/admin/lib/jquery.toastmessage.js"></script>
+    <script type="text/javascript" src="static/js/admin/lib/plupload.full.min.js"></script>
+    <script type="text/javascript" src="static/js/admin/lib/qiniu.js"></script>
+    <script src="static/js/admin/src/config.js"></script>
+    <script src="static/js/admin/src/Functions.js"></script>
+    <script src="static/js/admin/src/workUpdate.js"></script>
+    <script>
+        var postId="{{artifact.id}}";
+    </script>
+</head>
+<body>
+<script type="text/template" id="mediaItemTpl">
+    <li class="zyupUnCompleteLi" data-file-id="${fileId}">
+        <span class="zyupPercent">0%</span>
+        <span class="zyupMediaFilename">${filename}</span>
+        <span class="zyupDelete zyupHidden">delete</span>
+    </li>
+</script>
+<script type="text/template" id="previewTpl">
+    <div class="workDetail">
+        <h2 class="title">${title}</h2>
+        <p class="description">${description}</p>
+        {@each assets as a}
+        <img src="${a.media_file}">
+        {@/each}
+    </div>
+</script>
+
+
+
+{% include 'admin/header.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        {% include 'admin/menu.html' %}
+
+        <div class="col-md-10 opt-container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">上传资料</h1>
+                </div>
+                <div class="panel-body" id="opt-body">
+
+                    <div class="zyupScreen">
+                        <div class="zyupTab" id="zyupTab">
+                            <ol>
+                                <li><a href="#zyupStep1" class="zyupStep  zyupStepCurrent">1. 填写基本信息</a></li>
+                                <li><a href="#zyupStep2" class="zyupStep ">2. 上传</a></li>
+                                <li><a href="#zyupStep3" class="zyupStep">3. 预览并提交</a></li>
+                            </ol>
+                        </div>
+                        <form class="zyupForm" id="zyupForm">
+                            <div class="zyupStepPanel zyupStepPanel1 " id="zyupStep1">
+
+                                {% if artifact.id %}
+                                <input type="hidden" name="id" value="{{artifact.id}}">
+                                {% endif %}
+
+                                <div class="zyupField">
+                                    <label>标题*</label>
+                                    <input type="text"  maxlength="80" value="{{artifact.name}}" class="zyupInputGray"
+                                           name="name" id="zyupTitleInput">
+                                </div>
+                                <div class="zyupField">
+                                    <label>分类</label>
+                                    <p class="zyupTip">按住ctrl键多选。</p>
+                                    <select type="text" multiple style="height: 100px;" class="zyupInputGray" id="zyupCategorySel">
+                                        <!--<option value="{{mt}}">{{mt}}</option>-->
+                                        {% for mt in materials  %}
+                                            {% if mt.id in artifact.material_ids  %}
+                                            <option selected value="{{mt.id}}">{{mt.name}}</option>
+                                            {% else %}
+                                            <option value="{{mt.id}}">{{mt.name}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="zyupField">
+                                    <label>设计师*</label>
+                                    <select type="text" class="zyupInputGray" name="account_id" id="zyupDesigner">
+                                        <!--<option value="{{mt}}">{{mt}}</option>-->
+                                        {% for d in designers  %}
+                                            {% if d.id == artifact.account_id  %}
+                                            <option selected value="{{d.id}}">{{d.first_name}} {{d.last_name}}/{{d.country_name}}</option>
+                                            {% else %}
+                                            <option value="{{d.id}}">{{d.first_name}} {{d.last_name}}/{{d.country_name}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="zyupField">
+                                    <label >语言版本*</label>
+                                    <select class="zyupInputGray" name="locale">
+                                        {% for locale in [{"name":"中文","value":"zh"},{"name":"英文","value":"en"}] %}
+                                        {% if locale== artifact.locale %}
+                                        <option selected value="{{locale.value}}">{{locale.name}}</option>
+                                        {%  else %}
+                                        <option value="{{locale.value}}">{{locale.name}}</option>
+                                        {% endif %}
+                                        {%endfor%}
+                                    </select>
+                                </div>
+                                <div class="zyupField">
+                                    <label>设计说明*</label>
+                                    <textarea class="zyupInputGray" name="abstract" id="zyupDescriptionTxt"
+                                              placeholder="">{{artifact.abstract}}</textarea>
+                                </div>
+                                <div class="zyupField">
+                                    <label>设计灵感链接</label>
+                                    <input type="text" maxlength="80" value="{{artifact.reference}}" class="zyupInputGray"
+                                           name="reference" >
+                                </div>
+                                <div class="right">
+                                    <div class="zyupThumbContainer" id="zyupThumbContainer">
+                                        <a href="#" class="zyupButton" id="zyupThumbUploadBtn">上传缩略图</a>
+                                        <span class="zyupTip">正方形的jpg或png图像，宽度500-800px。</span>
+                                        {% if artifact.preview_image %}
+                                        <img class="zyupThumb" id="zyupThumb" width="300" height="300"
+                                             src="{{artifact.preview_image}}"/>
+                                        {% else %}
+                                        <img class="zyupThumb" id="zyupThumb" width="300" height="300"
+                                             src="static/images/admin/app/defaultPeopleImage.jpg"/>
+                                        {% endif %}
+                                        <input type="hidden" value="{{artifact.preview_image}}" name="preview_image" id="zyupThumbUrl">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- step 2-->
+                            <div class="zyupStepPanel zyupStepPanel2 zyupHidden" id="zyupStep2">
+
+                                <span class="zyupColumnLeftHeader" id="zyupUploadBtn">添加文件（宽度800-1200px，高度不限）</span>
+
+                                <ol id="zyupMediaList" class="zyupMediaList">
+                                    {% for a in artifact.assets %}
+                                    <li class="zyupMediaItem" data-file-id="{{loop.index}}">
+                                        <span class="zyupPercent"><img style='width:100px' src='{{a.media_file}}'></span>
+                                        <span class="zyupMediaFilename">{{a.media_filename}}</span>
+                                        <span class="zyupDelete">delete</span>
+                                    </li>
+                                    {% endfor %}
+                                </ol>
+                            </div>
+
+                            <!-- step 3-->
+                            <div class="zyupStepPanel zyupStepPanel3 zyupHidden" id="zyupStep3">
+                                <input type="submit" autocomplete="default" value="提交" class="zyupFormSubmitBtn"
+                                       name="zyupFormSubmitBtn" id="zyupFormSubmitBtn"/>
+                                <div id="zyupPreview" class="zyupPreview">
+                                    <!-- 模板内容加载区 -->
+                                    <!--<div class="workDetail">
+                                        <h2 class="title">作品的标题</h2>
+                                        <p class="description">这里是作品的描述</p>
+                                        <img src="../../data/detailImg/1.jpg">
+                                        <img src="../../data/detailImg/2.jpg">
+                                        <img src="../../data/detailImg/3.jpg">
+                                        <img src="../../data/detailImg/4.jpg">
+                                    </div>-->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'admin/loading.html' %}
+
+</body>
+</html>

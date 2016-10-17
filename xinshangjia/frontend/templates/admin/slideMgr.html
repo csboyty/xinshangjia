@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'admin/head.html' %}
+    <link href="static/css/admin/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/lib/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/src/main.css" type="text/css" rel="stylesheet">
+    <script src="static/js/admin/lib/jquery-2.0.3.min.js"></script>
+    <script src="static/js/admin/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/js/admin/lib/jquery.toastmessage.js"></script>
+    <script type="text/javascript" src="static/js/admin/lib/jquery.dataTables.min.js"></script>
+    <script src="static/js/admin/src/config.js"></script>
+    <script src="static/js/admin/src/Functions.js"></script>
+    <script src="static/js/admin/src/slideMgr.js"></script>
+</head>
+<body>
+
+{% include 'admin/header.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        {% include 'admin/menu.html' %}
+
+        <div class="col-md-10 opt-container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">幻灯片管理</h1>
+                </div>
+                <div class="panel-body" id="opt-body">
+                    <a class="btn btn-success" href="me/admin/banner/create-banner">添加幻灯片</a>
+                    <table id="myTable" class="dataTable">
+                        <thead>
+                        <tr>
+                            <th>图片</th>
+                            <th>说明</th>
+                            <th>状态</th>
+                            <th>语言</th>
+                            <th>序号</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--<tr>
+                            <td><img class="slideThumb" src="data/1600x450/2.jpg"></td>
+                            <td>dddddddd</td>
+                            <td>启用</td>
+                            <td>中文</td>
+                            <td>1</td>
+                            <td><a href="#" class="edit">修改</a>&nbsp;<a href="#" class="remove">删除</a></td>
+                        </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'admin/loading.html' %}
+
+</body>
+</html>

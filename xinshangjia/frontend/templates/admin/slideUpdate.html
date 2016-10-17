@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'admin/head.html' %}
+    <link href="static/css/admin/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/src/main.css" type="text/css" rel="stylesheet">
+    <script src="static/js/admin/lib/jquery-2.0.3.min.js"></script>
+    <script src="static/js/admin/lib/bootstrap.min.js"></script>
+    <script src="static/js/admin/lib/jquery.toastmessage.js"></script>
+    <script src="static/js/admin/lib/plupload.full.min.js"></script>
+    <script src="static/js/admin/lib/qiniu.js"></script>
+    <script src="static/js/admin/lib/jquery.serialize-object.min.js"></script>
+    <script src="static/js/admin/lib/jquery.validate.min.js"></script>
+    <script src="static/js/admin/src/config.js"></script>
+    <script src="static/js/admin/src/Functions.js"></script>
+    <script src="static/js/admin/src/slideUpdate.js"></script>
+</head>
+<body>
+
+{% include 'admin/header.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        {% include 'admin/menu.html' %}
+
+        <div class="col-md-10 opt-container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">新建/修改幻灯片</h1>
+                </div>
+                <div class="panel-body" id="opt-body">
+                    <form class="form-horizontal" id="myForm">
+                        {% if banner.id %}
+                        <input type="hidden" name="id" value="{{banner.id}}">
+                        {% endif %}
+                        <div class="form-group">
+                            <label class="control-label col-md-2">图片*</label>
+                            <div class="col-md-10" id="uploadContainer">
+                                <a href="#" class="btn btn-success" id="uploadBtn">上传</a>
+                                <p class="help-block">请上传1920x600的jpg，png</p>
+                                {% if banner.image_url %}
+                                <img id="image"  style="width:100%"
+                                     src="{{banner.image_url}}"/>
+                                {% else %}
+                                <img  id="image"  style="width:100%"
+                                     src="static/images/admin/app/defaultSlideImage.jpg"/>
+                                {% endif %}
+                                <input type="hidden" id="imageUrl" name="image_url" value="{{banner.image_url}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">说明*</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" value="{{banner.caption}}"
+                                       name="caption">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="status" class="control-label col-md-2">状态*</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="status" id="status">
+                                    {% for status in [{"name":"启用","value":"1"},{"name":"禁用","value":"0"}] %}
+                                    {% if status== banner.status %}
+                                    <option selected value="{{status.value}}">{{status.name}}</option>
+                                    {%  else %}
+                                    <option value="{{status.value}}">{{status.name}}</option>
+                                    {% endif %}
+                                    {%endfor%}
+                                </select>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                            <label class="control-label col-md-2">状态*</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="status">
+                                    <option value="0">禁用</option>
+                                    <option value="1">启用</option>
+                                </select>
+                            </div>
+                        </div>-->
+                        <!--<div class="form-group">
+                            <label class="control-label col-md-2">语言版本*</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="locale">
+                                    <option value="zh">中文</option>
+                                    <option value="en">英文</option>
+                                </select>
+                            </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label class="control-label col-md-2">语言版本*</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="locale">
+                                    {% for locale in [{"name":"中文","value":"zh"},{"name":"英文","value":"en"}] %}
+                                    {% if locale== banner.locale %}
+                                    <option selected value="{{locale.value}}">{{locale.name}}</option>
+                                    {%  else %}
+                                    <option value="{{locale.value}}">{{locale.name}}</option>
+                                    {% endif %}
+                                    {%endfor%}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">序号*</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control"
+                                       value="{{banner.ordering}}" name="ordering">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">链接地址*</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control"
+                                       value="{{banner.link_url}}" name="link_url">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-success">确定</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'admin/loading.html' %}
+
+</body>
+</html>

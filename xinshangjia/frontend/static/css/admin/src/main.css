@@ -1,0 +1,211 @@
+html{
+    height: 100%;
+}
+body{
+    padding:0px;
+    margin:0px;
+    height: 100%;
+    font-family: "Arial","微软雅黑","Heiti";
+    font-size: 14px;
+    background: #fff;
+}
+.hidden{
+    display: none!important;
+}
+a,a:hover{
+    text-decoration: none;
+}
+form{
+    padding-top: 10px;
+}
+.hasRightBorder{
+    border-right:1px solid #ccc;
+}
+.hasLeftBorder{
+    border-left:1px solid #ccc;
+}
+
+/*
+*整体布局
+*/
+.header{
+    width:100%;
+    background: #ccc;
+    height: 80px;
+    position: relative;
+}
+.logout{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    color: #fff;
+}
+.logout:hover{
+    color: #fff;
+}
+
+/*
+*logo
+*/
+.logo{
+    margin:0px 0px 0px 0px;
+    height: 100%;
+    width: auto;
+    display: inline-block;
+}
+.logo a{
+    display: block;
+    height: 100%;
+    color:#fff;
+    line-height: 80px;
+    font-size: 36px;
+    /*background: url(../../images/app/header.jpg) no-repeat;
+    background-size: 100% 100%;*/
+}
+
+/**
+* 菜单
+*/
+.menu-container{
+    padding-right:5px;
+    padding-left:10px;
+    margin-top: 15px;
+}
+.menu-container .btn-group-vertical{
+    width: 100%;
+}
+.menu-container .dropdown-menu{
+    width: 100%;
+    background: #f5f5f5;
+}
+.menu-container .dropdown-menu>li>a:hover{
+    background: #ccc;
+}
+.menu-container .dropdown-menu>li>a{
+    text-align: center;
+}
+.menu-container .panel-body{
+    padding: 0px;
+}
+.menu-container .btn{
+    border-radius: 0px;
+    background: #eee;
+    box-sizing:border-box;
+}
+.opt-container{
+    padding-left:5px;
+    padding-right:10px;
+    margin-top: 15px;
+}
+
+/**
+*loading
+*/
+.loading{
+    position: fixed;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+    opacity: .5;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+    background: #000;
+}
+.loading .text{
+    position: absolute;
+    left:50%;
+    top:50%;
+    color:#fff;
+}
+
+label.error{
+    color: red;
+}
+
+/**
+*popWindow,没用到，用的bootstrap的模态框
+*/
+.popWindow{
+    width: 50%;
+    height: 80%;
+    position: fixed;
+    top:5%;
+    left:25%;
+    background: #fff;
+    z-index: 10000;
+    overflow-y: auto;
+    padding:10px;
+}
+.popWindow .title{
+    background: #ccc;
+    margin:0px;
+}
+.popWindow .close{
+    font-size: 24px;
+    line-height: 30px;
+    cursor: pointer;
+    float: none;
+    text-align: right;
+    display: block;
+}
+.popWindow .content{
+    padding: 10px;
+}
+
+/**
+*复写bootstrap影响的其他样式
+*/
+.toast-item-image{
+    margin-top: 0px;
+}
+/**
+*表格上方的搜索
+*/
+.tableSearchContainer{
+    margin: 10px 0px;
+}
+.tableSearchContainer .form-control{
+    margin: 5px 0px;
+}
+/**
+*复写datatable
+*/
+table.dataTable{
+    margin-top: 20px;
+}
+table.dataTable thead {
+    background: #f5f5f5;
+}
+table.dataTable thead th{
+    color: #00A67F;
+    border: none;
+    font-weight: normal;
+    padding: 5px;
+    text-align: center;
+}
+table.dataTable td {
+    padding: 5px;
+    text-align: center;
+}
+table.dataTable .categoryExcerpt{
+    width:800px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: auto;
+    display: block;
+}
+table.dataTable .slideThumb{
+    width: 200px;
+    height: auto;
+}
+table.dataTable .peopleThumb{
+    width: 100px;
+    height: auto;
+}
+table.dataTable .more{
+    cursor: pointer;
+}
+
+

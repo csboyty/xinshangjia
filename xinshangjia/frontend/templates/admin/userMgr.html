@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'admin/head.html' %}
+    <link href="static/css/admin/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/lib/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/src/main.css" type="text/css" rel="stylesheet">
+    <script src="static/js/admin/lib/jquery-2.0.3.min.js"></script>
+    <script src="static/js/admin/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/js/admin/lib/jquery.toastmessage.js"></script>
+    <script type="text/javascript" src="static/js/admin/lib/jquery.dataTables.min.js"></script>
+    <script src="static/js/admin/src/config.js"></script>
+    <script src="static/js/admin/src/userMgr.js"></script>
+</head>
+<body>
+
+{% include 'admin/header.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        {% include 'admin/menu.html' %}
+
+        <div class="col-md-10 opt-container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">设计师管理</h1>
+                </div>
+                <div class="panel-body" id="opt-body">
+                    <div class="input-group tableSearchContainer col-md-6">
+                        <input type="text" id="searchContent" class="form-control" placeholder="昵称/邮箱">
+                        <span class="input-group-btn">
+                            <button id="searchBtn" class="btn btn-default" type="button">搜索</button>
+                        </span>
+                    </div>
+                    <table id="myTable" class="dataTable">
+                        <thead>
+                        <tr>
+                            <th>昵称</th>
+                            <th>邮箱</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--<tr>
+                            <td>dddddddd</td>
+                            <td>cs@163.com</td>
+                            <td>活跃</td>
+                            <td><a href="#">禁言</a></td>
+                        </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'admin/loading.html' %}
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'admin/head.html' %}
+    <link href="static/css/admin/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/src/main.css" type="text/css" rel="stylesheet">
+    <script src="static/js/admin/lib/jquery-2.0.3.min.js"></script>
+    <script src="static/js/admin/lib/bootstrap.min.js"></script>
+    <script src="static/js/admin/src/config.js"></script>
+</head>
+<body>
+
+{% include 'admin/header.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        {% include 'admin/menu.html' %}
+
+        <div class="col-md-10 opt-container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">欢迎</h1>
+                </div>
+                <div class="panel-body" id="opt-body">
+                    <h1 class="text-primary text-center">欢迎使用后台系统</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

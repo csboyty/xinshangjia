@@ -1,0 +1,283 @@
+#opt-body{
+    background: #EFEFEF;
+}
+.zyupHidden{
+    display: none!important;
+}
+/*************作品上传****************/
+.zyupScreen .zyupForm {
+    padding: 20px;
+    background: #fff;
+    width: 80%;
+    margin: auto;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/**************头部*********/
+.zyupTab {
+    padding: 40px 0 0 0;
+    width: 600px;
+    margin: auto;
+    font-size: 0;
+    white-space: nowrap;
+}
+.zyupTab ol{
+    margin: 0px;
+    padding:0px;
+}
+.zyupTab li {
+    display: inline-block;
+    width: 33.3%;
+    border: #ccc 1px solid;
+    border-bottom: none;
+    margin-left: -1px;
+}
+
+.zyupTab li a {
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+    color: #ccc;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    cursor: default;
+    color: #666;
+    cursor: pointer;
+    /*渐变色*/
+    background: #efefef; /* Old browsers */
+    background: -moz-linear-gradient(top, #efefef 0%, #cccccc 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #efefef), color-stop(100%, #cccccc)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #efefef 0%, #cccccc 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #efefef 0%, #cccccc 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #efefef 0%, #cccccc 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #efefef 0%, #cccccc 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#cccccc', GradientType=0); /* IE6-9 */
+
+}
+.zyupTab li a:hover {
+    color: #390;
+}
+.zyupTab li a.zyupStepCurrent {
+    background: url(../../../images/admin/zyup/zyupNavActiveBg.png) no-repeat;
+    color: #390;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.zyupTab li:not(:last-child) a:after{
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 13px;
+    background: url(../../../images/admin/zyup/zyupTriangleRight.png) no-repeat;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    margin-top: -7px;
+}
+
+
+/*****上传第一步******/
+.zyupStepPanel1 {
+    position: relative;
+    min-height: 350px;
+    padding-right: 440px;
+}
+.zyupStepPanel1 label {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 10px 0;
+    display: block;
+}
+.zyupStepPanel1 .zyupTip{
+    font-size:12px;
+    color:#666;
+}
+.zyupStepPanel1 .zyupField{
+    margin: 10px 0px 10px 0px;
+}
+.zyupStepPanel1 .zyupInputGray{
+    width: 100%;
+    height: 40px;
+    vertical-align: middle;
+    display: block;
+    padding: 0 10px;
+    background: #efefef;
+    border: none;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.zyupStepPanel1 .zyupButton {
+    width: 100px;
+    margin-bottom: 10px;
+    display: inline-block;
+    font-size: 12px;
+    text-decoration: none;
+    height: 40px;
+    line-height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    border: #bbb 1px solid;
+    padding: 0 10px;
+    background: linear-gradient(to bottom, #efefef 0%, #cccccc 100%);
+}
+.zyupStepPanel1 .zyupButton:hover {
+    background: #ccc;
+    cursor: pointer;
+}
+.zyupStepPanel1 .zyupField textarea {
+    padding: 10px;
+    resize: vertical;
+    min-height: 60px;
+}
+.zyupStepPanel1 .right {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    right: 0;
+    padding-left: 20px;
+    border-left: #ccc 1px dotted;
+}
+.zyupStepPanel1 .right .zyupTip{
+    vertical-align: top;
+    top: 26px;
+    width: 250px;
+    text-align: right;
+}
+.zyupStepPanel1 .right .zyupThumbContainer .zyupThumb{
+    display: block;
+}
+
+
+/*****上传第二步******/
+.zyupStepPanel2{
+    position: relative;
+    min-height: 300px;
+}
+.zyupStepPanel2 .zyupColumnLeftHeader {
+    width: 100%;
+    height: 40px;
+    line-height:40px;
+    color:#fff;
+    display: block;
+    cursor: pointer;
+    position:relative;
+    text-align: center;
+    background:url(../../../images/admin/zyup/zyupUploadBtnWhite.png) no-repeat 45% center #81d32a;
+}
+.zyupStepPanel2 .zyupMediaList {
+    margin: 0;
+    padding: 0px;
+    width: 100%;
+    color: #336699;
+    list-style-position: inside;
+}
+
+.zyupStepPanel2 .zyupMediaList li {
+    width: 100%;
+    /*height: 40px;
+    line-height: 40px;*/
+    border-bottom: 1px solid #CECFCF;
+    padding: 0;
+    position: relative;
+    line-height: 40px;
+}
+.zyupStepPanel2 .zyupDelete {
+    display: inline-block;
+    width: 30px;
+    font-size: 0px;
+    height: 30px;
+    background: url(../../../images/admin/zyup/zyupMediaDeleteWhite.png) #ccc center center no-repeat;
+    border-radius:15px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -15px;
+}
+.zyupStepPanel2 .zyupDelete:hover{
+    background-color:#C00;
+}
+.zyupStepPanel2 .zyupMediaFilename {
+    width: 50%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -15px;
+    height: 30px;
+    line-height: 30px;
+}
+.zyupStepPanel2 .zyupPercent {
+    /*width: 104px;*/
+    display: inline-block;
+    /*position: absolute;
+    left: 42px;
+    top: 0;*/
+}
+
+
+/*****上传第三步******/
+.zyupStepPanel3 {
+    position: relative;
+    min-height: 300px;
+    width: 780px;
+    margin: auto;
+    padding-top: 20px;
+}
+
+.zyupStepPanel3 .zyupFormSubmitBtn {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    width: 80px;
+    height: 128px;
+    padding-top: 40px;
+    border: none;
+    background: url(../../../images/admin/zyup/zyupSubmitBtn.png) no-repeat;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    vertical-align: top;
+    font-family: "微软雅黑";
+    cursor: pointer;
+}
+.workDetail{
+    background: #fff;
+    margin-left: 8%;
+    margin-right: 50px;
+    box-shadow: 0px 0px 5px #ccc;
+    padding:20px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 5px;
+    color: #7c7c7c;
+}
+.workDetail .title{
+    text-align: center;
+    font-size: 18px;
+    font-weight: normal;
+}
+.workDetail img{
+    width: 80%;
+    display: block;
+    border-radius: 5px;
+    margin:10px auto;
+    height: auto;
+}
+.workDetail .description{
+    font-size: 14px;
+    line-height: 21px;
+    text-indent: 28px;
+}

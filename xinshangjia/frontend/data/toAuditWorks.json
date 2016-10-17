@@ -1,0 +1,37 @@
+{
+    "sEcho":1,
+    "success":true,
+    "iTotalRecords":20,
+    "iTotalDisplayRecords":20,
+    "aaData": [{
+        "id":1,
+        "title":"作品1",
+        "status":0,
+        "memo":"",
+        "toAuditDate":"2014-09-09",
+        "thumb_url":"../../data/200x200/2.png",
+        "description":"aaaaaaaaaaaaaa",
+        "assets":[{
+            "name":"ssss.jpg",
+            "path":"../../data/1600x450/2.jpg"
+        },{
+            "name":"ssss.jpg",
+            "path":"../../data/1600x450/3.jpg"
+        }]
+    },{
+        "id":2,
+        "title":"作品2",
+        "status":0,
+        "memo":"",
+        "toAuditDate":"2014-09-09",
+        "thumb_url":"../../data/200x200/2.jpg",
+        "description":"bbbbbbbbbbbbbbbb",
+        "assets":[{
+            "name":"ssss.jpg",
+            "path":"../../data/1600x450/4.jpg"
+        },{
+            "name":"ssss.jpg",
+            "path":"../../data/1600x450/5.jpg"
+        }]
+    }]
+}

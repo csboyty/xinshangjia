@@ -1,0 +1,18 @@
+@-webkit-keyframes upAndOpacity {
+    to {
+        bottom:100px;
+        opacity: 100;
+    }
+}
+@-moz-keyframes upAndOpacity {
+    to {
+        bottom:100px;
+        opacity: 100;
+    }
+}
+@keyframes upAndOpacity {
+    to {
+        bottom:100px;
+        opacity: 100;
+    }
+}

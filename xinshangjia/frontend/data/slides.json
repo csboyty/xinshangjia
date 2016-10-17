@@ -1,0 +1,23 @@
+{
+    "sEcho":1,
+    "success":true,
+    "iTotalRecords":20,
+    "iTotalDisplayRecords":20,
+    "aaData": [{
+        "id":1,
+        "link_url":"http://www.baidu.com",
+        "caption":"aaaaaaa",
+        "lang":"zh",
+        "status":0,
+        "ordering":"1",
+        "image_url":"../../data/1600x450/2.jpg"
+    },{
+        "id":1,
+        "link_url":"#",
+        "caption":"sssss",
+        "lang":"en",
+        "status":1,
+        "ordering":"2",
+        "image_url":"../../data/1600x450/3.jpg"
+    }]
+}

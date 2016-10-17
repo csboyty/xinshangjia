@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "frontend/head.html" %}
+    <title>{{designer.first_name}} {{designer.last_name}} |{{_("BetterLife")}}</title>
+    <link href="static/css/frontend/src/main.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <link href="static/css/frontend/src/ie.css" rel="stylesheet" type="text/css">
+    <![endif]-->
+
+</head>
+<body>
+{% include "frontend/header.html" %}
+
+<div class="main">
+    <div class="autoLeft pdt50">
+        <ul class="wideList" id="workList">
+            {% for a in artifacts %}
+            {% if loop.index<=10 %}
+            <li>
+                <a href="artifact/detail/{{a.id}}">
+                    <img src="{{a.preview_image}}">
+                    <div class="info">
+                        <h3 class="title ellipsis">{{a.name}}</h3>
+                        <p class="description">{{a.abstract}}</p>
+                    </div>
+                </a>
+            </li>
+            {% else %}
+            <li class="hidden">
+                <a href="artifact/detail/{{a.id}}">
+                    <img src="{{a.preview_image}}">
+                    <div class="info">
+                        <h3 class="title ellipsis">{{a.name}}</h3>
+                        <p class="description">{{a.abstract}}</p>
+                    </div>
+                </a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        {% include "frontend/pagination.html" %}
+    </div>
+    <div class="fixedRight">
+        <div class="designerInfoRight">
+            <a class="thumb" href="designer/detail/{{designer.id}}">
+                <img src="{{designer.image_url}}">
+            </a>
+            <a class="name" href="designer/detail/{{designer.id}}">{{designer.first_name}} {{designer.last_name}}</a>
+            <p class="address">{{designer.country_name}}</p>
+            <p class="workCount">{{_("Works")}}：{{artifact_count}}</p>
+            {% if designer.description %}
+            <p class="description">{{designer.description}}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% include "frontend/footer.html" %}
+<script src="static/js/frontend/lib/jquery-1.11.1.min.js"></script>
+<script src="static/js/frontend/lib/jquery.jqpagination.min.js"></script>
+<script src="static/js/frontend/src/config.js"></script>
+<script src="static/js/frontend/src/Functions.js"></script>
+<script src="static/js/frontend/src/designerDetail.js"></script>
+<script>
+    var pageName="designerDetail";
+    var designerId="{{designer.id}}";
+    var maxCount="{{artifact_count}}";
+    var currentPage="{{page}}";
+</script>
+</body>
+</html>

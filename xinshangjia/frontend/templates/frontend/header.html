@@ -1,0 +1,17 @@
+<div class="header">
+    <h1 class="logo">
+        <a href="#">New Channel</a>
+    </h1>
+    <ul class="menu" id="menu">
+        <li><a href="artifact" data-menu-page="index">{{_("Featured")}}</a></li>
+        <li><a href="designer" data-menu-page="designers">{{_("Designers")}}</a></li>
+        <li>
+            <a>{{_("Categories")}}</a>
+            <ul class="subMenu">
+                {% for m in current_materials() %}
+                <li><a href="artifact/material/{{m.name}}">{{m.name}}</a></li>
+                {% endfor %}
+            </ul>
+            </li>
+        </ul>
+    </div>

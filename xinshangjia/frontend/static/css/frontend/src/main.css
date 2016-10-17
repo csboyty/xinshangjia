@@ -1,0 +1,832 @@
+body{
+    padding:10px 0px 0px 0px;
+    margin: 0px;
+    font-size: 14px;
+    background: #fff;
+    font-family: Arial,"微软雅黑", "黑体","宋体","Times New Roman", Verdana;
+    max-width: 1920px;
+    min-width: 1024px;
+    overflow-x: hidden;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+    padding:0px;
+    margin: 0px;
+}
+li{
+    display: inline-block;
+}
+img{
+    border:none;
+}
+.inputTxt{
+    height: 20px;
+}
+.ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.hidden{
+    display: none;/*无法使用动画*/
+}
+.pdt50{
+    padding-top:50px;
+}
+.hasTBBorder{
+    border-bottom: 1px dashed #9591a0;
+    border-top:1px dashed #9591a0;
+}
+.hasTopBorder{
+    border-top:1px dashed #9591a0;
+}
+.hasBottomBorder{
+    border-bottom: 1px dashed #9591a0;
+}
+.noBottomBorder{
+    border-bottom: none;
+}
+.header{
+    position: relative;
+    background: #ff6801;
+    height: 80px;
+}
+.main{
+    background: #f5f5f5;
+    box-shadow: 0px 5px 10px 3px #eee inset;
+    padding-bottom: 20px;
+}
+/**
+*左右两栏
+*/
+.autoLeft{
+    margin-right: 300px;
+}
+.fixedRight{
+    position: fixed;
+    width: 300px;
+    top:170px;
+    right: 0px;
+}
+/**
+*logo
+*/
+.logo{
+    margin: 0px;
+    position: absolute;
+    top:10px;
+    left: 30px;
+    z-index: 100;
+}
+.logo a{
+    color:#000;
+    height: 81px;
+    width: 140px;
+    display: block;
+    font-size: 0px;
+    background: url(../../../images/frontend/app/logo.png) no-repeat;
+}
+/**
+*menu
+*/
+.menu{
+    margin-left:300px;
+    font-size: 0px;
+}
+/*由于有sub menu最好这样写，才不影响sub menu的样式*/
+.menu>li{
+    vertical-align: top;
+}
+.menu>li>a{
+    color: #fff;
+    display: block;
+    width: 100px;
+    height: 90px;
+    line-height: 90px;
+    font-size: 16px;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+}
+.menu>li:hover>a,.menu>li>a.active{
+    background: #fff;
+    color: #000;
+}
+
+.menu>li>.subMenu{
+    position: absolute;
+    width:100%;
+    height: 0px;
+    background: #000;
+    left: 0px;
+    top: 80px;
+    z-index: 90;
+    padding: 0px 10px 0px 170px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition:.5s;
+    -moz-transition:.5s;
+    -ms-transition:.5s;
+    transition:.5s;
+}
+.menu>li>.subMenu>li{
+    margin: 5px 15px;
+}
+.menu>li>.subMenu>li>a{
+    color: #fff;
+    display: block;
+    font-size: 14px;
+}
+.menu>li:hover>.subMenu{
+    opacity: 1;
+    height:auto;
+    padding: 10px 10px 10px 170px;
+    visibility: visible;
+}
+.menu>li>.subMenu>li>a:hover{
+    color: #ff6801;
+}
+/**
+*rollList
+*/
+.rollContainer{
+    position: relative;
+}
+.rollList{
+    position: relative;
+}
+.rollList li{
+    width: 100%;
+    position: absolute;
+    left:0px;
+    top:0px;
+    /*-webkit-transition:.5s;
+    -moz-transition:.5s;
+    -ms-transition:.5s;
+    transition:.5s;*/
+    z-index: 1;
+    opacity: 0;
+    white-space: normal;
+}
+.rollList li.active{
+    opacity: 1;
+    z-index: 3;
+}
+.rollList li a{
+    display: block;
+    font-size: 0px;
+}
+.rollList li a img{
+    width: 100%;
+    height:auto;
+    display: block;
+}
+.numberList{
+    position: absolute;
+    bottom: 10px;
+    right:30%;
+    z-index: 4;
+}
+.numberList li a{
+    height: 12px;
+    width: 12px;
+    border: 1px solid #333;
+    border-radius: 12px;
+    display: block;
+    background: #eee;
+    font-size: 0px;
+    opacity: .6;
+    filter:alpha(opacity=60);
+}
+.numberList li a.active{
+    background: #fff;
+    opacity: 1;
+    filter:alpha(opacity=100);
+}
+.numberBar{
+    width: 100%;
+    border-collapse: collapse;
+}
+.numberBar td{
+    height: 6px;
+    padding:0px;
+    line-height: 6px;
+}
+.numberBar a{
+    height: 100%;
+    background: #fff;
+    width: 100%;
+    display: block;
+    font-size: 0px;
+    opacity: 0;
+    -webkit-transition:.5s;
+    -moz-transition:.5s;
+    -ms-transition:.5s;
+    transition:.5s;
+}
+.numberBar a:hover,.numberBar a.active{
+    background: #ff6801;
+    opacity: 1;
+}
+/**
+*说明
+*/
+.introduce,.introduceIcon{
+    font-size: 0px;
+    text-align: center;
+    background: #ededed;
+    padding:2%;
+}
+.introduceIcon{
+    padding-bottom: 0px;
+}
+.introduce{
+    padding-top: 0px;
+}
+.introduce li,.introduceIcon li{
+    position: relative;
+    vertical-align: top;
+}
+.introduceIcon .icon{
+    display: block;
+    width:100%;
+    height: 100%;
+}
+.introduce .info{
+    width: 100%;
+    color: #4b585c;
+}
+.introduce .title{
+    margin: 5px 0px;
+    font-size: 20px;
+    font-weight: normal;
+}
+.introduce .description{
+    margin: 5px 0px;
+    font-size: 12px;
+}
+.introduce .line{
+    display: block;
+    width: 100%;
+    height: 5px;
+    background: url(../../../images/frontend/app/line.png) no-repeat;
+    background-size: 100% 100%;
+    margin-top: 15px;
+}
+/**
+*翻转list
+*/
+.reversalList{
+    font-size: 0px;
+    text-align: center;
+}
+.reversalList li{
+    width:200px;
+    height: 200px;
+    position: relative;
+    margin: 10px;
+    -webkit-transition: .8s;
+    -moz-transition: .8s;
+    -ms-transition: .8s;
+    transition: .8s;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000
+}
+.reversalList li a{
+    display: block;
+    height: 100%;
+}
+.reversalList li a .front{
+    height: 100%;
+    width:100%;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: .6s;
+    -moz-backface-visibility: hidden;
+    -moz-transition: .6s;
+    -ms-backface-visibility: hidden;
+    -ms-transition: .6s;
+    backface-visibility: hidden;
+    transition: .6s;
+    z-index: 2;
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    background-color: #eee
+}
+.reversalList li a .back{
+    height: 100%;
+    width:100%;
+    color:#000;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: .6s;
+    -moz-backface-visibility: hidden;
+    -moz-transition: .6s;
+    -ms-backface-visibility: hidden;
+    -ms-transition: .6s;
+    backface-visibility: hidden;
+    transition: .6s;
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    background-color: #ccc;
+}
+.reversalList li a:hover .front{
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    transform: rotateY(180deg)
+}
+.reversalList li a:hover .back{
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg)
+}
+.reversalList li a img{
+    width: 100%;
+    height: auto;
+}
+.reversalList li a .title{
+    text-align: center;
+    font-size: 18px;
+}
+.reversalList li a .excerpt{
+    text-align: center;
+    font-size: 14px;
+}
+/**
+*高的卡片
+*/
+.highList{
+    width: 95%;
+    margin: auto;
+    font-size: 0px;
+    text-align: center;
+    padding:20px 0px 40px 0px;
+}
+.highList li{
+    width: 23%;
+    margin: 0.8%;
+    padding: 5px;
+    box-shadow: 0px 0px 5px #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    vertical-align: top;
+    font-size: 14px;
+    background: #fff;
+    -webkit-transition:.5s ease all;
+    -moz-transition:.5s ease all;
+    transition:.5s ease all;
+}
+.highList li a{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.highList li .thumb{
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+.highList .title{
+    width: 100%;
+    text-align: center;
+    margin: 5px 0px;
+    color:#4b585c;
+    font-size: 14px;
+    font-weight: normal;
+}
+.highList .designerImage{
+    width: 30px;
+    height: 30px;
+    display: block;
+    border-radius: 15px;
+    margin: auto;
+}
+.highList .designerName{
+    text-align: center;
+    color: #7c7c7c;
+    margin: 2px 0px;
+    font-size: 12px;
+}
+.highList li:hover{
+    -webkit-transform:translateY(-4px);
+    -moz-transfrom:translateY(-4px);
+    transform:translateY(-4px);
+}
+/**
+*圆形卡片
+*/
+.roundList{
+    font-size: 0px;
+    text-align: center;
+    padding-top: 40px;
+}
+.roundList li{
+    width:200px;
+    height: 200px;
+    position: relative;
+    margin: 10px;
+    overflow: hidden;
+    padding:5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    visibility: hidden;
+    opacity: 0;
+    top:30px;
+}
+.roundList li.active{
+    -webkit-animation: topAndOpacityAndV 1s ease both;
+    -moz-animation: topAndOpacityAndV 1s ease both;
+    animation: topAndOpacityAndV 1s ease both;
+}
+.roundList li a{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+.roundList li img{
+    width: 100%;
+    height: auto;
+    border-radius: 95px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    background: #fff;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    overflow: hidden;
+    box-shadow:0px 0px 5px #ccc;
+}
+.roundList li .infoBg{
+    height: 180px;
+    width:180px;
+    position: absolute;
+    border-radius: 90px;
+    top:10px;
+    left:10px;
+    background: #ff6801;
+    opacity: .8;
+    filter:alpha(opacity=80);
+    display: none;
+}
+.roundList li .info{
+    position: absolute;
+    bottom:20px;
+    right:0px;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    opacity: 0;
+}
+.roundList li .info .title{
+    font-size: 18px;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
+.roundList li .info .excerpt{
+    font-size: 14px;
+    margin: 5px auto;
+    width: 80%;
+    text-align: center;
+}
+.roundList li a:hover .infoBg{
+    display: block;
+}
+.roundList li a:hover .info{
+    -webkit-animation: upAndOpacity .6s ease both;
+    -moz-animation: upAndOpacity .6s ease both;
+    animation: upAndOpacity .6s ease both;
+}
+/**
+*右侧的设计者介绍
+*/
+.designerInfoRight{
+    padding: 0px 40px;
+    text-align: center;
+    color: #7c7c7c;
+}
+.designerInfoRight .thumb{
+    display: block;
+    margin-bottom: 15px;
+}
+.designerInfoRight .thumb img{
+    width: 190px;
+    height: 190px;
+    border-radius: 95px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    background: #fff;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    overflow: hidden;
+    box-shadow:0px 0px 5px #ccc;
+}
+.designerInfoRight .name{
+    color: #ff6801;
+    margin-top: 15px;
+}
+.designerInfoRight .address{
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+.designerInfoRight .workCount{
+    margin-bottom: 0px;
+}
+.designerInfoRight .description{
+    border-top:1px dashed #ccc;
+    border-bottom:1px dashed #ccc;
+    padding:10px 0px;
+    margin-top: 5px;
+    text-align: left;
+}
+/**
+*设计者详情页宽列表
+*/
+.wideList{
+    margin-left: 8%;
+    margin-right: 2%;
+}
+.wideList li{
+    width: 100%;
+    box-shadow: 0px 0px 5px #ccc;
+    margin-top: 10px;
+    padding:5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 5px;
+    background: #fff;
+}
+.wideList li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.wideList li a img{
+    display: block;
+    width: 20%;
+    height: auto;
+    border-radius: 5px;
+}
+.wideList li a .info{
+    padding-top: 20px;
+    position: absolute;
+    left:22%;
+    top:0px;
+    right:0px;
+    bottom:0px;
+}
+.wideList li .info .title{
+    margin-top: 0px;
+    color: #4b585c;
+    font-size: 18px;
+    font-weight: normal;
+    width: 80%;
+}
+.wideList li .info .description{
+    color: #7c7c7c;
+    font-size: 12px;
+    line-height: 24px;
+}
+.wideList li a:hover .info .title{
+    color: #ff6801;
+}
+/**
+*页面头部信息，用于分类页
+*/
+.pageHeaderInfo{
+    padding:30px;
+    color: #7c7c7c;
+}
+.pageHeaderInfo .title{
+    font-size: 18px;
+    font-weight: normal;
+    margin: 5px 0px;
+}
+.pageHeaderInfo .description{
+    font-size: 14px;
+    color: #7c7c7c;
+    line-height: 21px;
+    margin: 10px 0px;
+}
+/**
+*详情面板页
+*/
+.workDetail{
+    background: #fff;
+    margin-left: 8%;
+    margin-right: 50px;
+    box-shadow: 0px 0px 5px #ccc;
+    padding:20px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 5px;
+    color: #7c7c7c;
+}
+.workDetail .title{
+    text-align: center;
+    font-size: 18px;
+    font-weight: normal;
+}
+.workDetail img{
+    width: 80%;
+    display: block;
+    border-radius: 5px;
+    margin:10px auto;
+    height: auto;
+}
+.workDetail .description{
+    font-size: 14px;
+    line-height: 21px;
+    text-indent: 28px;
+}
+.floatLink{
+    display: block;
+    position: fixed;
+    top:220px;
+    right:326px;
+    color: #fff;
+    background: url(../../../images/frontend/app/floatIcon.png) no-repeat;
+    width:31px;
+    height: 100px;
+    font-size: 0px;
+}
+
+
+/**
+*loading
+*/
+.blackout {
+    background: #ccc;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9998;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+}
+.loading{
+    position: absolute;
+    z-index: 10000;
+    top: 50%;
+    left: 50%;
+    height:60px;
+    width:80px;
+    text-align: center;
+    line-height: 100%;
+    color:#ccc;
+    margin: -30px 0px 0px -40px;
+}
+.loading_spinner{
+
+}
+/**
+*popWindow
+*/
+.popWindow{
+    position: fixed;
+    z-index: 9999;
+    top:0px;
+    left:0px;
+    bottom:0px;
+    right:0px;
+    background: #fff;
+    overflow: auto;
+}
+.popWindow .close{
+    position: fixed;
+    right:15px;
+    top:20px;
+    display: block;
+    height:58px;
+    width:58px;
+    font-size: 20px;
+    cursor: pointer;
+}
+/**
+*自定义分页
+*/
+.ownPagination{
+    text-align: center;
+    margin-top: 50px;
+}
+.ownPagination a{
+    display: inline-block;
+    height: 40px;
+    font-size: 14px;
+    width: auto;
+    margin:0px 5px;
+    line-height: 40px;
+    vertical-align: top;
+    color: #000;
+}
+.ownPagination a.disabled{
+    display: none;
+}
+.ownPagination input {
+    border: none;
+    text-align: center;
+    height: 40px;
+    outline: none;
+    vertical-align: top;
+    width: 120px;
+    padding: 0;
+    margin: 0;
+    background: #f9f9f9;
+}
+
+/**
+*页面底部
+*/
+.footer{
+    background: #f5f5f5;
+}
+.footer .copyRight{
+    margin: 0px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color:#4b585c;
+}
+
+@-webkit-keyframes topAndOpacityAndV {
+    to {
+        visibility: visible;
+        opacity:1;
+        top:0px;
+    }
+}
+@-moz-keyframes topAndOpacityAndV {
+    to {
+        visibility: visible;
+        opacity: 1;
+        top:0px;
+    }
+}
+@keyframes topAndOpacityAndV {
+    to {
+        visibility: visible;
+        opacity: 1;
+        top:0px;
+    }
+}
+@-webkit-keyframes upAndOpacity {
+    to {
+        bottom:80px;
+        opacity: 1;
+    }
+}
+@-moz-keyframes upAndOpacity {
+    to {
+        bottom:80px;
+        opacity: 1;
+    }
+}
+@keyframes upAndOpacity {
+    to {
+        bottom:80px;
+        opacity: 1;
+    }
+}
+
+@media screen and (min-width:1366px){
+    .highList{
+        width: 100%;
+    }
+    .highList li{
+        width: 260px;
+        margin: 10px;
+    }
+}
+@media screen and (min-width: 1600px) {
+    .highList{
+        width: 100%;
+    }
+    .highList li{
+        width: 300px;
+        margin: 10px;
+    }
+
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'admin/head.html' %}
+    <link href="static/css/admin/src/login.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="header">
+    <h1 class="logo"><a href="#">HomeStyle</a></h1>
+</div>
+
+
+<form method="post" action="{{ url_for_security('login') }}" id="loginForm" class="loginForm" name="login_user_form">
+    {{ login_user_form.hidden_tag() }}
+    <div class="row">
+        <label for="email" class="labelTxt">邮箱</label>
+        <input type="text" class="inputTxt" name="email" id="email" placeholder="请输入邮箱...">
+    </div>
+    <div  class="row">
+        <label for="password" class="labelTxt">密码</label>
+        <input type="password" class="inputTxt" id="password" name="password" placeholder="请输入密码...">
+    </div>
+    <button type="submit" class="submitBtn">登&nbsp;&nbsp;陆</button>
+
+     {% if login_user_form.errors.values() %}
+
+        {% for errors in login_user_form.errors.values() %}
+        {% for error in errors %}
+        <label class="error">{{ error }}</label>
+        {% endfor %}
+        {% endfor %}
+    {% endif %}
+</form>
+<script src="static/js/admin/lib/md5.min.js"></script>
+<script>
+    window.onload=function(){
+        document.getElementById("loginForm").onsubmit=function(){
+            var passwordEl=document.getElementById("password");
+            passwordEl.value=hex_md5(passwordEl.value);
+        }
+    }
+</script>
+</body>
+</html>

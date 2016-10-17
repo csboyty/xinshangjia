@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'admin/head.html' %}
+    <link href="static/css/admin/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/lib/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/lib/jquery.toastmessage.css" rel="stylesheet" type="text/css">
+    <link href="static/css/admin/src/main.css" type="text/css" rel="stylesheet">
+    <script src="static/js/admin/lib/jquery-2.0.3.min.js"></script>
+    <script src="static/js/admin/lib/bootstrap.min.js"></script>
+    <script src="static/js/admin/lib/jquery.serialize-object.min.js"></script>
+    <script src="static/js/admin/lib/jquery.toastmessage.js"></script>
+    <script src="static/js/admin/lib/jquery.dataTables.min.js"></script>
+    <script src="static/js/admin/lib/jquery.validate.min.js"></script>
+    <script src="static/js/admin/src/config.js"></script>
+    <script src="static/js/admin/src/Functions.js"></script>
+    <script src="static/js/admin/src/worksMgr.js"></script>
+</head>
+<body>
+
+{% include 'admin/header.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        {% include 'admin/menu.html' %}
+
+        <div class="col-md-10 opt-container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">作品管理</h1>
+                </div>
+                <div class="panel-body" id="opt-body">
+                    <div class="input-group tableSearchContainer col-md-6">
+                        <input type="text" id="searchContent" class="form-control" placeholder="标题">
+                        <span class="input-group-btn">
+                            <button id="searchBtn" class="btn btn-default" type="button">搜索</button>
+                        </span>
+                    </div>
+                    <a class="btn btn-success" href="me/admin/artifact/create-artifact">上传作品</a>
+                    <table id="myTable" class="dataTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>标题</th>
+                            <th>分类</th>
+                            <th>设计者</th>
+                            <th>语言</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--<tr>
+                            <td><span class="more glyphicon glyphicon-plus"></span></td>
+                            <td><a href="#" target="_blank">dddddddd</a></td>
+                            <td>桌子</td>
+                            <td>cs@163.com</td>
+                            <td>中文</td>
+                            <td><a href="#">追加语言</a>&nbsp;&nbsp;<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a></td>
+                        </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--添加语言-->
+<div class="modal fade" id="addLangModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">添加其他语言</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addLangForm">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">标题*</label>
+                        <div class="col-md-8">
+                            <p id="oldTitle">原来的标题</p>
+                            <input type="text" class="form-control" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">描述*</label>
+                        <div class="col-md-8">
+                            <p id="oldDescription">原来的描述</p>
+                            <textarea class="form-control" name="abstract"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">语言版本*</label>
+                        <div class="col-md-8">
+                            <select class="form-control" name="locale" id="langSel">
+                                <option value="">请选择</option>
+                                <option value="zh">中文</option>
+                                <option value="en">英文</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-success">添加</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+{% include 'admin/loading.html' %}
+
+</body>
+</html>

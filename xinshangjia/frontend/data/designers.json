@@ -1,0 +1,14 @@
+{
+    "sEcho":1,
+    "success":true,
+    "iTotalRecords":20,
+    "iTotalDisplayRecords":20,
+    "aaData": [{
+        "id":1,
+        "email":"cs.163.com",
+        "active":1,
+        "nick_name":"cs",
+        "image_url":"../../data/200x200/2.png",
+        "tel":"1222222222"
+    }]
+}
